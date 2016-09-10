@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class noteMovement : MonoBehaviour {
-    public float scrollspeed = 0.05f;
+    public float scrollspeed = 0.5f;
 	// Use this for initialization
 	void Start () {
 	
@@ -10,7 +10,7 @@ public class noteMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        gameObject.transform.position = new Vector2(transform.position.x, transform.position.y-scrollspeed/5);
+        gameObject.transform.position = new Vector2(transform.position.x, transform.position.y-scrollspeed/8);
 
 	}
 }
