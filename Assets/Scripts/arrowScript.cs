@@ -50,24 +50,24 @@ public class arrowScript : MonoBehaviour
                 {
                     score += 100;
                     anim.SetInteger("precision", 3);
-                    StartCoroutine(WaitAndPrint(0.5F));
+                    StartCoroutine(WaitAndPrint(0.1F));
                 }
                 else if (range < .25)
                 {
                     score += 50;
                     anim.SetInteger("precision", 2);
-                    StartCoroutine(WaitAndPrint(0.5F));
+                    StartCoroutine(WaitAndPrint(0.1F));
                 }
                 else if (range < 0.5)
                 {
                     score += 25;
                     anim.SetInteger("precision", 1);
-                    StartCoroutine(WaitAndPrint(0.5F));
+                    StartCoroutine(WaitAndPrint(0.1F));
                 }
                 else
                 {
                     anim.SetInteger("precision", 4);
-                    StartCoroutine(WaitAndPrint(0.5F));
+                    StartCoroutine(WaitAndPrint(0.1F));
                 }
                 
             }
@@ -75,7 +75,7 @@ public class arrowScript : MonoBehaviour
             {
                 score -= 75;
                 anim.SetInteger("precision", 4);
-                StartCoroutine(WaitAndPrint(0.5F));
+                StartCoroutine(WaitAndPrint(0.1F));
 
             }
 
