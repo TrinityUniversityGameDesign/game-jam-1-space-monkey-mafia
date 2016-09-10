@@ -8,7 +8,6 @@ public class arrowScript : MonoBehaviour
     bool note_arrow_overlap = false;
     public float scrollSpeed = 0.3f;
     public KeyCode directionKey = KeyCode.UpArrow;
-    bool keyPressed = false;
 
 
 
@@ -22,21 +21,15 @@ public class arrowScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            keyPressed = true;
-        }
-        if (Input.GetKeyUp(KeyCode.UpArrow))
-        {
-            keyPressed = false;
-        }
-        if(keyPressed)
+        if (Input.GetKey(directionKey));
         {
             print("Pressed");
-        } else
+        }
+        if (Input.GetKeyUp(directionKey))
         {
             print("Not Pressed");
         }
+        
     }
 
     void OnTriggerEnter2D(Collider2D other)
