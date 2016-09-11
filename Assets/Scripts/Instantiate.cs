@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Instantiate : MonoBehaviour
 {
@@ -7,25 +8,30 @@ public class Instantiate : MonoBehaviour
     public float timeCount = 0;
     public float bps = 1;
     public float offset = 0;
+    
+
+    public bool b0;
+    public bool b1;
+    public bool b2;
+    public bool b3;
+    public bool b4;
+    public bool b5;
+    public bool b6;
+    public bool b7;
+
+    
+
     bool beats_bool = true;
+
     public GameObject parentTrack;
-    // Use this for initialization
     void Start()
     {
         StartCoroutine(WaitAndPrint(1 / bps));
 
     }
 
-    // Update is called once per frame
     void Update()
     {
-        timeCount += Time.deltaTime;
-        Debug.Log(timeCount);
-
-        if (timeCount % (1 / bps) == 0)
-        {
-            // Object.Instantiate(Resources.Load("Prefabs/noteBlock"), new Vector3(0, 7, 0), Quaternion.identity);
-        }
 
     }
 
@@ -34,11 +40,21 @@ public class Instantiate : MonoBehaviour
         yield return new WaitForSeconds(offset);
         while (beats_bool)
         {
-            yield return new WaitForSeconds(waitTime);
-            //Object.Instantiate(Resources.Load("Prefabs/noteBlock"), new Vector3(0, 7, 0), Quaternion.identity);
+            /*yield return new WaitForSeconds(waitTime);
             GameObject newNoteBlock = (GameObject)Instantiate(Resources.Load("Prefabs/noteBlock"), parentTrack.transform);
-            newNoteBlock.transform.localPosition = new Vector3(0, 0, -0.9f);
+            newNoteBlock.transform.localPosition = new Vector2(0, -10f);*/
+            bool[] beats = {b0,b1,b2,b3,b4,b5,b6,b7};
+            foreach (bool b in beats)
+            {
+                if (b)
+                {
+                    GameObject newNoteBlock = (GameObject)Instantiate(Resources.Load("Prefabs/noteBlock"), parentTrack.transform);
+                    newNoteBlock.transform.localPosition = new Vector2(0, -10f);
+                }
+                yield return new WaitForSeconds(1f);
+            }
         }
+        
 
     }
 

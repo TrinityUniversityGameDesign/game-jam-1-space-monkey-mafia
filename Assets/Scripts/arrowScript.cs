@@ -4,14 +4,11 @@ using UnityEngine.UI;
 
 public class arrowScript : MonoBehaviour
 {
-    public GameObject noteBlock;
+    //public GameObject noteBlock;
     public Rigidbody2D arrow;
     public GameObject collision;
-    public GameObject flop;
     bool note_arrow_overlap = false;
-    bool note_out = false;
     public float scrollSpeed = 0.3f;
-    public KeyCode directionKey = KeyCode.UpArrow;
     public string dckey = "up";
     public Text scoreText;
 
@@ -39,7 +36,7 @@ public class arrowScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
 
         if (Input.GetKeyDown(dckey))
         {
@@ -69,7 +66,7 @@ public class arrowScript : MonoBehaviour
                     anim.SetInteger("precision", 4);
                     StartCoroutine(WaitAndPrint(0.1F));
                 }
-                
+
             }
             else
             {
@@ -80,7 +77,11 @@ public class arrowScript : MonoBehaviour
             }
 
 
-            if (collision != null) DestroyObject(collision);
+            if (collision != null)
+            {
+                DestroyObject(collision);
+                note_arrow_overlap = false;
+            }
         }
         //print(range);
 
@@ -89,32 +90,32 @@ public class arrowScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        //Debug.Log(other.gameObject.layer);
-        if (other.gameObject.layer == LayerMask.NameToLayer("NoteLayer"))
+        //if (other.gameObject.layer == LayerMask.NameToLayer("NoteLayer"))
+        if (note_arrow_overlap)
         {
-            collision = other.gameObject;
-            note_arrow_overlap = true;
-            Debug.Log("Trigger enter!");
+            Destroy(collision);
         }
+        collision = other.gameObject;
+        note_arrow_overlap = true;
+
 
     }
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("NoteLayer"))
-        {
-            collision = null;
-            note_arrow_overlap = false;
-           
-            Debug.Log("Trigger exit!!!");
-        }
+        //if (other.gameObject.layer == LayerMask.NameToLayer("NoteLayer"))
+
+        //collision = null;
+        note_arrow_overlap = false;
+
         DestroyObject(other.gameObject);
     }
 
     IEnumerator WaitAndPrint(float waitTime)
-    {  
-            yield return new WaitForSeconds(waitTime);
-            anim.SetInteger("precision",0);
-        
+    {
+        yield return new WaitForSeconds(waitTime);
+        anim.SetInteger("precision", 0);
+
 
     }
 }
+
